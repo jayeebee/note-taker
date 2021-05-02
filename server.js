@@ -23,8 +23,24 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "/public/index.html"))
  });
 
+app.post('/api/notes', (req, res) => {
+    req.body.id = notes.length.toString();
+    const note = createNewNote(req.body, notes)
+    res.json(note)
+});
 
+function createNewNote (body, notesArray) {
+    const note = body;
+    notesArray.push(note);
+    fs.writeFileSync(
+        path.join(__dirname, './db/db.json'),
+        JSON.stringify({ notes: notesArray}, null, 2)
+    )
+    return note;
+}
 
  app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
+
+//test text       {"title":"Test Title2","text":"Test text2","id":"1"}
