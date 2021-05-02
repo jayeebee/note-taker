@@ -18,15 +18,6 @@ app.get("/api/notes", (req, res) => {
     res.json(input);
 });
 
-app.get('/notes/:id', (req, res) => {
-    const result = findById(req.params.id, notes);
-    if (result) {
-      res.json(result);
-    } else {
-      res.send(404);
-    }
-  });
-
 app.post('/api/notes', (req, res) => {
     req.body.id = notes.length.toString();
     const note = createNewNote(req.body, notes)
