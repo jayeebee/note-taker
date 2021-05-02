@@ -169,12 +169,12 @@ const renderNoteList = async (notes) => {
     li.dataset.note = JSON.stringify(note);
 
     noteListItems.push(li);
-  });
+  });*/
 
   if (window.location.pathname === './notes') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
-};*/
+};
 
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
