@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3001;
-const { notes } =require("./db/db.json")
+const { notes } = require("./db/db.json")
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -22,7 +22,7 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "/public/index.html"))
  });
 
-app.post('/api/notes', (req, res) => {
+app.post('/notes', (req, res) => {
     req.body.id = notes.length.toString();
     const note = createNewNote(req.body, notes)
     res.json(note)
