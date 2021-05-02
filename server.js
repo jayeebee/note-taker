@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3001;
-const notes = require("./db/db.json")
+const { notes } = require("./db/db.json")
 
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
@@ -17,6 +17,15 @@ app.get("/api/notes", (req, res) => {
     let input = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
     res.json(input);
 });
+
+app.get('/notes/:id', (req, res) => {
+    const result = findById(req.params.id, notes);
+    if (result) {
+      res.json(result);
+    } else {
+      res.send(404);
+    }
+  });
 
 app.post('/api/notes', (req, res) => {
     req.body.id = notes.length.toString();
