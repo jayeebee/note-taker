@@ -22,7 +22,11 @@ app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "/public/index.html"))
  });
 
-app.post('/notes', (req, res) => {
+app.get('/notes', (req, res) => {
+    res.json(notes);
+  });
+
+app.post('/api/notes', (req, res) => {
     req.body.id = notes.length.toString();
     const note = createNewNote(req.body, notes)
     res.json(note)
