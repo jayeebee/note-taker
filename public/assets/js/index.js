@@ -47,11 +47,6 @@ const saveNote = (note) =>
       }
       alert('Error: ' + response.statusText);
     })
-    .then(postResponse => {
-      console.log(postResponse);
-      alert('Thank you for adding a note!');
-    });
-
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -74,6 +69,7 @@ const renderActiveNote = () => {
     noteText.removeAttribute('readonly');
     noteTitle.value = '';
     noteText.value = '';
+    noteTitle.focus
   }
 };
 
@@ -130,7 +126,7 @@ const handleRenderSaveBtn = () => {
 // Render the list of note titles
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === './notes') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
