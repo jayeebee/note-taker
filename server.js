@@ -18,19 +18,15 @@ app.get("/api/notes", (req, res) => {
     res.json(input);
 });
 
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "/public/index.html"))
- });
-
-app.get('/notes', (req, res) => {
-    res.json(notes);
-  });
-
 app.post('/api/notes', (req, res) => {
     req.body.id = notes.length.toString();
     const note = createNewNote(req.body, notes)
     res.json(note)
 });
+
+app.get("*", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/index.html"))
+ });
 
 function createNewNote (body, notesArray) {
     const note = body;
