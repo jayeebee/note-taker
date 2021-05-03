@@ -3,7 +3,10 @@ const path = require("path");
 const router = require('express').Router();
 const { notes } = require("../db/db.json");
 
-
+router.get('/notes', (req, res) => {
+    res.json(notes);
+  });
+  
 router.get("/notes", (req, res) => {
     let input = JSON.parse(fs.readFileSync("./db/db.json", "utf8"))
     res.json(input);
