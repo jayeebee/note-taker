@@ -2,7 +2,6 @@ const express = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const { notes } = require("./db/db.json")
 
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
